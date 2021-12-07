@@ -1,0 +1,389 @@
+---
+layout: karen
+title: Karen
+permalink: /karen/
+active: karen
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta author='Hugh Ferguson'>
+    <title>HUGH FERGUSON</title>
+    <meta name="viewport" content="initial-scale=1" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet' type='text/css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400&display=swap" rel="stylesheet">
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+    <style type="text/css">
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .link {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            text-decoration: none;
+            color: black;
+            font-family: Karla, sans serif;
+            transition-duration: 1s;
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        .link:hover {
+            color: red;
+        }
+
+        .middle {
+            margin-top: 5vh;
+            background-color: black;
+            pointer-events: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            background-image: url("https://static.tumblr.com/3zmswwt/gL1ny5cm4/2cwrjc00.gif");
+            border: 0;
+            margin-top: 0vh;
+            overflow-y: hidden;
+            height: 250px;
+            width: auto;
+        }
+
+        .white-top {
+            width: 480px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            margin-top: -150px;
+            height: 50vh;
+            background-color: white;
+            position: fixed;
+            display: block;
+        }
+
+        .white-bottom {
+            width: 480px;
+            left: 50%;
+            margin-top: 120px;
+            transform: translate(-50%, 50%);
+            height: 100vh;
+            background-color: white;
+            position: fixed;
+            display: block;
+        }
+
+        .name {
+            text-align: center;
+            font-family: Overpass;
+            font-weight: 400;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 35px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .name:hover {
+            color: red;
+        }
+
+        .button {
+            min-width: 130px;
+            padding: 4px 4px;
+            cursor: pointer;
+            text-align: center;
+            background: #fff;
+            font-size: 13px;
+            border: 1px solid #e0e0e0;
+            text-decoration: none;
+            color: #000;
+            font-family: Overpass;
+        }
+
+        .button:hover {
+            background: #fff;
+            color: #000;
+            border: 2px solid black;
+        }
+
+        .themes {
+            display: none;
+            font-family: Karla;
+            font-size: 20px;
+            position: absolute;
+            color: black;
+            opacity: 0.5;
+        }
+
+        .categories {
+            display: none;
+            font-family: Karla;
+            font-size: 20px;
+            position: absolute;
+            color: black;
+            opacity: 0.5;
+        }
+
+        .year {
+            display: none;
+            font-family: Karla;
+            font-size: 20px;
+            position: absolute;
+            color: black;
+            opacity: 0.5;
+        }
+
+        #feed {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="name" target="_parent" href="https://karynnakamura.com/info">HUGH FERGUSON</a>
+    <div class="themes" style="top: 20vh; left: 20vw;">SOUND</div>
+    <div class="themes" style="top: 20vh; left: 74vw;">DATA</div>
+    <div class="themes" style="top: 70vh; left: 20vw;">INTERACTIVE</div>
+    <div class="themes" style="top: 70vh; left: 74vw;">VISUAL</div>
+    <div class="categories" style="top: 20vh; left: 20vw;">WEB</div>
+    <div class="categories" style="top: 20vh; left: 74vw;">MOTION</div>
+    <div class="categories" style="top: 70vh; left: 20vw;">LIVE</div>
+    <div class="categories" style="top: 70vh; left: 74vw;">STATIC</div>
+    <div class="year" style="top: 70px; left: 15vw;">2021</div>
+    <div class="year" style="top: 70px; left: 74vw;">2020</div>
+    </div>
+    <img class="middle" src="https://static.tumblr.com/3zmswwt/gL1ny5cm4/2cwrjc00.gif">
+
+    <a class="link interactive live twentyone" target="_parent"
+        href="https://karynnakamura.com/post/656523258258145280/you-vs-computer-interactive-installation-where"
+        description="https://64.media.tumblr.com/f2ca3f299135d6491e54664cd30ec757/007df06cd167cd99-4c/s540x810/c9d07c6cf0c0ecd3e6365faa88b80aed568f369f.gifv">YOUVSCOMPUTER.mp4</a>
+
+    <a class="link visual video twenty" target="_parent"
+        href="https://karynnakamura.com/post/641389091062153216/album-cover-audiovisual-tame-impala-currents"
+        description="https://64.media.tumblr.com/360b7d975ce81917c313a631030e7385/fb18d0b3dc8f9b26-9b/s540x810/728a6b3a607153820f8463bc0258b3a9478498c3.gifv">currentsrender.4.mov</a>
+
+    <button id="sort" class="button">SORT</button>
+    <button id="feed" style="display: none;" class="button">FEED</button>
+
+    <script type="text/javascript">
+
+        var links = document.getElementsByClassName('link');
+
+        var winWidth = window.innerWidth * 0.94;
+        var winHeight = window.innerHeight * 0.95;
+
+        //<iframe class = "middle" src = "" frameBorder="0" scrolling="no" hspace="0" vspace="0" marginheight="0" marginwidth="0"></iframe>
+
+        //RANDOM
+        function sortRandom() {
+            for (var i = 0; i < links.length; i++) {
+
+                // shortcut! the current div in the list
+                var thisLink = links[i];
+
+                // get random numbers for each element
+                randomTop = getRandomNumber(0, winHeight);
+                randomLeft = getRandomNumber(0, winWidth);
+
+                // update top and left position
+                thisLink.style.top = randomTop + "px";
+                thisLink.style.left = randomLeft + "px";
+            }
+        }
+
+        sortRandom()
+
+        //THEME
+
+        var themedimensions = {
+            sound: [winWidth * 0.1, winWidth * 0.35, winHeight * 0.15, winHeight * 0.4],
+            data: [winWidth * 0.6, winWidth * 0.8, winHeight * 0.15, winHeight * 0.4],
+            interactive: [winWidth * 0.1, winWidth * 0.35, winHeight * 0.65, winHeight * 0.95],
+            visual: [winWidth * 0.6, winWidth * 0.8, winHeight * 0.65, winHeight * 0.95]
+        }
+
+        function sortThemes() {
+
+            winWidth = window.innerWidth * 0.94;
+            winHeight = window.innerHeight * 0.95;
+
+            d3.selectAll(".themes").style("display", "block")
+            d3.selectAll(".categories").style("display", "none")
+            d3.selectAll(".year").style("display", "none")
+
+            for (var i = 0; i < Object.keys(themedimensions).length; i++) {
+
+                var theme = Object.keys(themedimensions)[i];
+                var themelinks = document.getElementsByClassName(theme);
+                var themearea = themedimensions[theme]
+
+                for (var j = 0; j < themelinks.length; j++) {
+
+                    themeselector = "." + theme
+                    var thisthemelink = d3.selectAll(themeselector)
+
+                    thisthemelink.each(function (d, i) {
+                        randomTop = getRandomNumber(themearea[2], themearea[3]);
+                        randomLeft = getRandomNumber(themearea[0], themearea[1]);
+
+                        console.log(randomTop + " " + randomLeft)
+                        d3.select(this).transition().duration(500).style("top", randomTop + "px").style("left", randomLeft + "px")
+
+                    })
+                }
+            }
+        }
+
+        //CATEGORY
+        var categorydimensions = {
+            web: [winWidth * 0.1, winWidth * 0.35, winHeight * 0.15, winHeight * 0.4],
+            video: [winWidth * 0.6, winWidth * 0.8, winHeight * 0.15, winHeight * 0.4],
+            live: [winWidth * 0.1, winWidth * 0.35, winHeight * 0.65, winHeight * 0.95],
+            image: [winWidth * 0.6, winWidth * 0.8, winHeight * 0.65, winHeight * 0.95]
+        }
+
+        function sortCategories() {
+
+            winWidth = window.innerWidth * 0.94;
+            winHeight = window.innerHeight * 0.95;
+
+            d3.selectAll(".categories").style("display", "block")
+            d3.selectAll(".themes").style("display", "none")
+            d3.selectAll(".year").style("display", "none")
+
+            for (var i = 0; i < Object.keys(categorydimensions).length; i++) {
+
+                var category = Object.keys(categorydimensions)[i];
+                var categorylinks = document.getElementsByClassName(category);
+                var categoryarea = categorydimensions[category]
+
+                for (var j = 0; j < categorylinks.length; j++) {
+
+                    categoryselector = "." + category
+                    var thiscategorylink = d3.selectAll(categoryselector)
+
+                    thiscategorylink.each(function (d, i) {
+                        randomTop = getRandomNumber(categoryarea[2], categoryarea[3]);
+                        randomLeft = getRandomNumber(categoryarea[0], categoryarea[1]);
+
+                        console.log(randomTop + " " + randomLeft)
+                        d3.select(this).transition().duration(500).style("top", randomTop + "px").style("left", randomLeft + "px")
+
+                    })
+
+                    //d3.select(thisthemelink).transition().duration(500).style("top", randomTop+"px").style("left", randomLeft+"px")
+
+                }
+            }
+        }
+
+        function sortTime() {
+            winWidth = window.innerWidth * 0.94;
+            winHeight = window.innerHeight * 0.95;
+
+            d3.selectAll(".categories").style("display", "none")
+            d3.selectAll(".themes").style("display", "none")
+            d3.selectAll(".year").style("display", "block")
+
+            var twentytop = 105
+            var twentyonetop = 105
+
+            d3.selectAll(".twenty").each(function (d, i) {
+                d3.select(this).transition().duration(500).style("top", twentytop + "px").style("left", "74vw")
+                twentytop = twentytop + 30
+            })
+
+            d3.selectAll(".twentyone").each(function (d, j) {
+                d3.select(this).transition().duration(500).style("top", twentyonetop + "px").style("left", "15vw")
+                twentyonetop = twentyonetop + 30
+            })
+
+        }
+
+        var mode = 0
+
+        d3.select("#sort")
+            .on("click", function () {
+                if (mode == 0) {
+                    sortThemes()
+                    mode = 1
+                }
+                else if (mode == 1) {
+                    sortCategories()
+                    mode = 2
+                }
+                else if (mode == 2) {
+                    sortTime()
+                    mode = 3
+                }
+                else if (mode == 3) {
+                    d3.selectAll(".categories").style("display", "none")
+                    d3.selectAll(".themes").style("display", "none")
+                    d3.selectAll(".year").style("display", "none")
+                    sortRandom()
+                    mode = 0
+                }
+            })
+
+        d3.select("#feed")
+            .on("click", function () {
+                //d3.selectAll(".link, .button").transition().duration(500).style("opacity", 0)
+                d3.select(".name").style("top", "50%").transition().duration(800).style("top", "13.2%").style("font-size", "22px").style("opacity", 0.8)
+                d3.selectAll(".link, .button").transition().duration(500).style("opacity", 0)
+                    .on("end", () => {
+                        window.location.href = "https://karynnakamura.com/tagged/karynn"
+                    })
+            })
+
+
+        //HOVER ACTION
+
+        nonhorizontal = [
+            "https://64.media.tumblr.com/6bcf68a2e762c2de84495739ebbce4cf/ae284d1d6719835c-bd/s2048x3072/2d35e076d0589cba80ddd265f76f9526fee655c5.jpg",
+            "https://64.media.tumblr.com/e2ff0506185e2688832b1da0e82caeab/9231c6a485abf61a-be/s500x750/ba14d97a70c43e1e0f9b2f2b87d22811ae90aafa.gifv",
+            "https://64.media.tumblr.com/250c87bda84e29f5b1a0aea71a2d98c2/acade87721eae1a7-ac/s2048x3072/3e94963c4f28fc62b62ae5ba827087bb4021b5b4.png",
+            "https://64.media.tumblr.com/6e46cf99e0ad320d68f3d29a86cf188c/25944fac7bf72407-81/s500x750/059c39f40cbe75f2714b712ef6271db5f4053011.gifv",
+            "https://64.media.tumblr.com/053a1ee9f1ee3b87674fff79113dc416/2e7f980d4e9b19d0-4d/s2048x3072/1a3fdf278454b109936ff9c3401594543fd16e6d.jpg",
+            "https://64.media.tumblr.com/e307c0e6ed4bd0862ac96d01228a0c62/b323914696c2a015-7a/s540x810/8d02ace59dce77aa1c8daa529ab9d85bda2a1d46.gifv",
+            "https://64.media.tumblr.com/d8f359de237a846506f86c06619494c6/dfff839cbc666253-7c/s540x810/92f815768cf25acc85c775bf28dae96bb9c171f9.gifv",
+            "https://64.media.tumblr.com/4f679719175306968253de629333f040/e2bf87d4b8f5f9d8-c9/s2048x3072/2695a90580176853a0c2afabcc637ae8e49363a1.jpg",
+            "https://64.media.tumblr.com/f673e28adc22f732cc371dcdf5c43f95/b7df386e1c67c1df-a8/s400x600/fbf7651b52752e063278555b536f40f72d487fc3.gifv"
+        ]
+
+        d3.selectAll(".link")
+            .on('mouseover', function () {
+                url = d3.select(this).attr("description")
+
+                if (nonhorizontal.includes(url)) {
+                    d3.select(".middle").attr("src", url).style("width", "360px").style("height", "auto").style("display", "block")
+                }
+                else {
+                    d3.select(".middle").attr("src", url).style("height", "260px").style("width", "auto").style("display", "block")
+                }
+                d3.select(".white-top").style("display", "block")
+                d3.select(".white-bottom").style("display", "block")
+            })
+            .on('mouseout', function () {
+                d3.select(".middle").style("display", "none")
+                d3.select(".white-top").style("display", "none")
+                d3.select(".white-bottom").style("display", "none")
+            })
+
+        // function that returns a random number between a min and max
+        function getRandomNumber(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    </script>
+</body>
+</html>
