@@ -1397,6 +1397,16 @@ img.post-image, img.page-img {
   cursor: url('../img/next-img-icon.svg'), auto;
 }
 
-#img1 {
+.title-text {
+  font-size: 11em;
+  margin: 0 auto;
+  text-align: center;
+}
 
+.countdown {
+  height: 600px;
+  width: 1200px;
+  margin: 0 auto;
+  border: 1px solid black;
+  background-color: #15F3A8;
 }
