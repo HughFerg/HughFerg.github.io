@@ -1398,9 +1398,16 @@ img.post-image, img.page-img {
 }
 
 .title-text {
-  font-size: 11em;
+  font-size: 12em;
   margin: 0 auto;
   text-align: center;
+}
+
+.title-subtext {
+  font-size: 1.5em;
+  text-align: center;
+  position: relative;
+  padding: .5em;
 }
 
 .countdown {
@@ -1408,5 +1415,16 @@ img.post-image, img.page-img {
   width: 1200px;
   margin: 0 auto;
   border: 1px solid black;
-  background-color: #15F3A8;
+  position: relative;
+  background-color: #382933;
+}
+
+#progressBar {
+  width: 1%;
+  height: 100%;
+  background-color: #519872;
+}
+
+.container {
+  
 }

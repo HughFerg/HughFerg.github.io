@@ -5,6 +5,55 @@ permalink: /heatdeath/
 active: heatdeath
 ---
 
-<div class="title-text">HEAT DEATH</div>
-<div class="countdown">
-</div>
+<body onload="move()">
+    <div class="container">
+        <div class="title-text">HEAT DEATH</div>
+        <div class="title-subtext">A countdown to the heat death of our universe.</div>
+        <div class="countdown">
+            <div id="progressBar"></div>
+        </div>
+        <div class="title-subtext">Double logarithmic time. 100 * (log (log year)</div>
+        <div class="title-subtext">Heat Death is a hypothesis about the ultimate state of the universe- one of maximum
+            entropy.
+            Applying the second rule of thermodynamics (total entropy within a closed system must increase irreversably
+            to some extent over time),
+            if the universe is an isolated system, then its entropy must increase with time. The implication
+            is that the universe must ultimately suffer a “heat death” as its entropy progressively increases toward a
+            maximum value
+            and all parts come into thermal equilibrium at a uniform temperature. After that point, no further changes
+            involving the
+            conversion of heat into useful work are possible.</div>
+        <!-- <div class="title-subtext">Several other milestones are provided that may be of interest to the human race. </div> -->
+    </div>
+
+    <script>
+        var i = 0;
+        function move() {
+            if (i == 0) {
+                i = 1;
+                var elem = document.getElementById("progressBar");
+                var width = 1;
+                
+                // calculate percent progress
+                let year = new Date().getFullYear()
+                year += 13.787 * 1000000000
+                year = 100 * Math.log(Math.log(year))
+                // approx 10^100 till HD
+                end = 100 * Math.log(Math.log(Math.pow(10, 100))) 
+                percent = year / end
+                console.log(percent)
+
+                var id = setInterval(frame, 10);
+                function frame() {
+                    if (width >= percent * 100) {
+                        clearInterval(id);
+                        i = 0;
+                    } else {
+                        width++;
+                        elem.style.width = width + "%";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
