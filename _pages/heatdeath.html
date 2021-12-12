@@ -6,14 +6,15 @@ active: heatdeath
 ---
 
 <body onload="move()">
+    <div id="progressBar"></div>
+    <div id="percentCounter">0%</div>
+    <div id="progressLabel">Double logarithmic time. 100 * (log (log year)</div>
     <div class="container">
         <div class="title-text">HEAT DEATH</div>
-        <div class="title-subtext">A progress bar towards the heat death of our universe. Waste it wisely.</div>
-        <div class="countdown">
-            <div id="progressBar"></div>
-        </div>
-        <div class="title-subtext">Double logarithmic time. 100 * (log (log year)</div>
-        <div class="title-subtext">Heat Death is a hypothesis about the ultimate state of the universe- one of maximum
+        <div class="title-subtext">A progress bar towards the heat death of our universe. Waste wisely.</div>
+        <!-- <div class="title-subtext">Several other milestones are provided that may be of interest to the human race. </div> -->
+    </div>
+        <div class="title-subsubtext">Heat Death is a hypothesis about the ultimate state of the universe- one of maximum
             entropy.
             Applying the second rule of thermodynamics (total entropy within a closed system must increase irreversably
             to some extent over time),
@@ -23,8 +24,6 @@ active: heatdeath
             and all parts come into thermal equilibrium at a uniform temperature. After that point, no further changes
             involving the
             conversion of heat into useful work are possible.</div>
-        <!-- <div class="title-subtext">Several other milestones are provided that may be of interest to the human race. </div> -->
-    </div>
 
     <script>
         var i = 0;
@@ -32,25 +31,27 @@ active: heatdeath
             if (i == 0) {
                 i = 1;
                 var elem = document.getElementById("progressBar");
-                var width = 1;
-                
+                let percentCounter = document.getElementById("percentCounter")
+                let progressLabel = document.getElementById("progressLabel")
+                var height = 1;
                 // calculate percent progress
                 let year = new Date().getFullYear()
                 year += 13.787 * 1000000000
-                year = 100 * Math.log(Math.log(year))
+                year = 100 * Math.log10(Math.log10(year))
                 // approx 10^100 till HD
-                end = 100 * Math.log(Math.log(Math.pow(10, 100))) 
+                end = 100 * Math.log10(Math.log10(Math.pow(10, 100)))
                 percent = year / end
-                console.log(percent)
-
                 var id = setInterval(frame, 10);
                 function frame() {
-                    if (width >= percent * 100) {
+                    if (height >= percent * 100) {
                         clearInterval(id);
                         i = 0;
                     } else {
-                        width++;
-                        elem.style.width = width + "%";
+                        height++;
+                        elem.style.height = height + "%";
+                        percentCounter.textContent = "~" + height + "%"
+                        percentCounter.style.bottom = height + "%";
+                        progressLabel.style.bottom = height + "%";
                     }
                 }
             }

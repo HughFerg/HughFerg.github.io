@@ -1407,22 +1407,33 @@ img.post-image, img.page-img {
   font-size: 1.5em;
   text-align: center;
   position: relative;
-  padding: .5em;
+  padding: 1em;
 }
-
-.countdown {
-  height: 600px;
-  width: 1200px;
+.title-subsubtext {
+  font-size: 1em;
+  text-align: center;
+  position: absolute;
+  padding: 0 10em 0;
+  bottom: 30%;
   margin: 0 auto;
-  border: 1px solid black;
-  position: relative;
-  background-color: #382933;
+  color: #444444;
 }
 
 #progressBar {
-  width: 1%;
-  height: 100%;
+  width: 100%;
   background-color: #519872;
+  position: fixed;
+  bottom: 0;
+}
+
+#progressLabel {
+  position: fixed;
+  bottom: 0;
+}
+
+#percentCounter {
+  position: fixed;
+  right: 0;
 }
 
 .container {
